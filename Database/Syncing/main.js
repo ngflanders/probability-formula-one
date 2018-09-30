@@ -4,7 +4,7 @@ const util = require("./util");
 const checkLastInsert = require("./checkLastInsert");
 const queryAPI = require("./queryAPI");
 const insertIntoDB = require("./insertIntoDB");
-const dbConnectionConfig = require("./dbConnectionConfig").dbConnectionConfig
+const dbConnectionConfig = require("../../dbConnectionConfig").dbConnectionConfig
 
 const dbQuali = mysql.createConnection(dbConnectionConfig);
 const dbResults = mysql.createConnection(dbConnectionConfig);
