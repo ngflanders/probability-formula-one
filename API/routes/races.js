@@ -4,7 +4,7 @@ let db = require('../util/dbconnection');
 
 
 router.get('/', function (req, res, next) {
-  res.status(400).send('Invalid route: must match Express route "results/:year/:round?"');
+  res.status(400).send('Invalid route: must match Express route "races/:year/:round?"');
 });
 
 router.get('/:year/', function (req, res, next) {
@@ -19,17 +19,15 @@ router.get('/:year/:round', function (req, res, next) {
 });
 
 function fetchResults(apiRes, year, round) {
-  let query = "select positionOrder, surname,code,results.number, constructors.name as constructor, points,grid, " +
-      "races.name as race, races.round as round from results" +
-      " join drivers on drivers.driverId = results.driverId" +
-      " join constructors on results.constructorId = constructors.constructorId";
+  let query = "select races.name, year, round, date, time, circuitRef, circuits.name, location, country, lat, lng\n" +
+      "from races join circuits on races.circuitId = circuits.circuitId ";
   if (year) {
-    query += " join races on races.raceId = results.raceId where year = " + db.escape(year);
+    query += " where year = " + db.escape(year);
     if (round) {
       query += " and round = " + db.escape(round);
     }
   }
-  query += " order by positionOrder";
+  query += " order by round";
   db.query(query, function (err, result) {
     if (err) {
       console.error(err);

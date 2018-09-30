@@ -1,13 +1,14 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var resultsRouter = require('./routes/results');
+const indexRouter = require('./routes/index');
+const resultsRouter = require('./routes/results');
+const qualifyingRouter = require('./routes/qualifying');
+const racesRouter = require('./routes/races');
 
-var app = express();
+let app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -16,7 +17,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/results', resultsRouter);
+app.use('/qualifying', qualifyingRouter);
+app.use('/races', racesRouter);
 
 module.exports = app;
