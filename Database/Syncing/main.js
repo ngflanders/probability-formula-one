@@ -10,9 +10,9 @@ const dbQuali = mysql.createConnection(dbConnectionConfig);
 const dbResults = mysql.createConnection(dbConnectionConfig);
 const dbStandings = mysql.createConnection(dbConnectionConfig);
 const dbConstructorStandings = mysql.createConnection(dbConnectionConfig);
-dbQuali.connect();
-dbResults.connect();
-dbStandings.connect();
+dbQuali.connect(dbConnectionError);
+dbResults.connect(dbConnectionError);
+dbStandings.connect(dbConnectionError);
 dbConstructorStandings.connect();
 
 checkLastInsert.checkLastInsert(dbQuali, "qualifying").then(
@@ -100,3 +100,8 @@ checkLastInsert.checkLastInsert(dbConstructorStandings, "constructorstandings").
       console.error("checkLastInsert.constructorstandings: rejected Promise")
       dbConstructorStandings.end();
     });
+
+
+function dbConnectionError(err) {
+    if (err) console.error(err);
+}
