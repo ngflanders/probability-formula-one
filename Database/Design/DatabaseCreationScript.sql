@@ -1,3 +1,6 @@
+create database if not exists myf1db;
+use myf1db;
+
 create table if not exists circuits
 (
 	circuitId int auto_increment
