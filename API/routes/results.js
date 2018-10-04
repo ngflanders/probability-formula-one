@@ -29,7 +29,7 @@ function fetchResults(apiRes, year, round) {
       query += " and round = " + db.escape(round);
     }
   }
-  query += " order by positionOrder";
+  query += " order by round, positionOrder";
   db.query(query, function (err, result) {
     if (err) {
       console.error(err);

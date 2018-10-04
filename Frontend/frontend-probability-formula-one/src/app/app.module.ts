@@ -5,7 +5,7 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import {ResultsComponent} from './results/results.component';
-import {ResultsService} from '../Services/results.service';
+import {FormulaoneInfoService} from "../Services/formulaone-info.service";
 
 
 @NgModule({
@@ -17,7 +17,7 @@ import {ResultsService} from '../Services/results.service';
     BrowserModule,
     HttpClientModule
   ],
-  providers: [ResultsService],
+  providers: [FormulaoneInfoService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
