@@ -1,12 +1,12 @@
 <table>
-  <thead>
-  <th>a</th>
-  <th>b</th>
-  </thead>
-  <tbody>
-  <td></td>
-  </tbody>
-  <!--<tr *ngFor="let r of results">-->
-    <!--<td></td>-->
-  <!--</tr>-->
+  <tr>
+    <th *ngFor="let a of (results && results[0])">
+      {{a.country}}
+    </th>
+  </tr>
+  <tr *ngFor="let r of results;index as i">
+    <td *ngFor="let rr of r">
+      {{rr.code}}
+    </td>
+  </tr>
 </table>

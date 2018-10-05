@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormulaoneInfoService} from '../../Services/formulaone-info.service';
 
 @Component({
@@ -9,22 +9,29 @@ import {FormulaoneInfoService} from '../../Services/formulaone-info.service';
 export class ResultsComponent implements OnInit {
   results: any;
 
-
-  constructor(private resultsService: FormulaoneInfoService) { }
+  constructor(private resultsService: FormulaoneInfoService) {
+  }
 
   ngOnInit() {
     this.resultsService.getRaceResults(2018).subscribe(res => {
-      this.results = this.myGroupBy(res, 'round');
+      this.results = this.myGroupBy(res, 'positionOrder');
       console.log(this.results);
     });
   }
 
 
   myGroupBy(xs, key) {
-    return xs.reduce(function(rv, x) {
+    var grouped = xs.reduce(function (rv, x) {
       (rv[x[key]] = rv[x[key]] || []).push(x);
       return rv;
     }, {});
+
+    var arr = [];
+    for (var s in grouped) {
+      arr.push(grouped[s])
+    }
+    return arr;
+
   };
 
 }
