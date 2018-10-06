@@ -19,4 +19,4 @@ Modern formula one informational site featuring retrospective statistics.
 1. `npm install` then `node API/bin/www` and the API should be listening
 
 ### Frontend
-1. Run `ng serve` from withing the `Frontend\frontend-probability-formula-one` directory.
+1. Run `ng serve` from within the `Frontend\frontend-probability-formula-one` directory.
