@@ -4,20 +4,22 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap'
 
 import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
-import {ResultsComponent} from './results/results.component';
+import {SeasonResultsComponent} from './season-results/season-results.component';
 import {FormulaoneInfoService} from "../Services/formulaone-info.service";
 import {AppRoutingModule} from './app-routing.module';
+import {NavbarComponent} from "./navbar/navbar.component";
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    NgbModule.forRoot()
+    NgbModule
   ],
   declarations: [
     AppComponent,
-    ResultsComponent
+    SeasonResultsComponent,
+    NavbarComponent
   ],
   providers: [FormulaoneInfoService],
   bootstrap: [AppComponent]

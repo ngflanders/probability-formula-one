@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
-import {ResultsComponent} from "./results/results.component";
+import {SeasonResultsComponent} from "./season-results/season-results.component";
 
 const routes: Routes = [
-  {path: 'results', component: ResultsComponent}
-];
+  {path: 'season-results', component: SeasonResultsComponent },
+  {path: 'season-results/:year', component: SeasonResultsComponent },
+  ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
