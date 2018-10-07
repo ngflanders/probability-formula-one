@@ -8,6 +8,7 @@ import {SeasonResultsComponent} from './season-results/season-results.component'
 import {FormulaoneInfoService} from "../Services/formulaone-info.service";
 import {AppRoutingModule} from './app-routing.module';
 import {NavbarComponent} from "./navbar/navbar.component";
+import {ChampionshipPredictionComponent} from "./championship-prediction/championship-prediction.component";
 
 @NgModule({
   imports: [
@@ -18,8 +19,9 @@ import {NavbarComponent} from "./navbar/navbar.component";
   ],
   declarations: [
     AppComponent,
+    NavbarComponent,
     SeasonResultsComponent,
-    NavbarComponent
+    ChampionshipPredictionComponent
   ],
   providers: [FormulaoneInfoService],
   bootstrap: [AppComponent]

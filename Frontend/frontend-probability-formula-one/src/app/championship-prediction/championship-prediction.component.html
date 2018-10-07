@@ -1,0 +1,10 @@
+<div class="container" style="margin: 2rem">
+  <div class="row" *ngFor="let d of drivers" style="margin-bottom: 1rem">
+    <div class="col-md-1">{{d.code}}</div>
+    <div class="progress col-md-11" style="padding-left: 0px; padding-right: 0px; height: 2rem">
+      <div class="progress-bar bg-success" role="progressbar"
+           [ngClass]="{'bg-danger': d.prob < 25, 'bg-warning' : d.prob >= 25 && d.prob < 50, 'bg-success': d.prob >= 50}"
+           [ngStyle]="{'width': d.probString}">{{d.probString}}</div>
+    </div>
+  </div>
+</div>
