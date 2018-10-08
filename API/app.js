@@ -8,6 +8,7 @@ const indexRouter = require('./routes/index');
 const resultsRouter = require('./routes/results');
 const qualifyingRouter = require('./routes/qualifying');
 const racesRouter = require('./routes/races');
+const simsRouter  =require('./routes/simulations');
 
 let app = express();
 
@@ -22,5 +23,6 @@ app.use('/', indexRouter);
 app.use('/results', resultsRouter);
 app.use('/qualifying', qualifyingRouter);
 app.use('/races', racesRouter);
+app.use('/simulations', simsRouter);
 
 module.exports = app;

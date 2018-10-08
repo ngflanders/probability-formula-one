@@ -9,22 +9,59 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class ChampionshipPredictionComponent implements OnInit {
 
-  lewis: any = {code: "HAM", prob: 60};
-  seb: any = {code: "VET", prob: 34};
-  rai: any = {code: "RAI", prob: 5};
-  bot: any = {code: "BOT", prob: 1};
-  drivers = [this.lewis, this.seb, this.rai, this.bot];
+  year: number;
+  round: number;
+  predictedPlaces;
+  displayTable;
 
   constructor(
     private resultsService: FormulaoneInfoService,
-    private route: ActivatedRoute,
-  ) {  }
+  ) {
+  }
 
   ngOnInit() {
-    this.drivers.forEach(d => d.probString = `${d.prob}%`);
+
+    if (!this.year) {
+      this.year = new Date().getFullYear();
+    }
+    this.resultsService.getSimulatedFinalStandings(this.year).subscribe(res => {
+      this.predictedPlaces = this.myGroupBy(res, 'driverRef');
+      this.displayTable = this.buildTable(this.predictedPlaces);
+      console.log(this.displayTable)
+    });
   }
 
 
+  myGroupBy(xs, key) {
+    var grouped = xs.reduce(function (rv, x) {
+      (rv[x[key]] = rv[x[key]] || []).push(x);
+      return rv;
+    }, {});
 
+    var arr = [];
+    for (var s in grouped) {
+      arr.push(grouped[s])
+    }
+    return arr;
+  };
 
+  buildTable(places) {
+    let x = new Array(places.length);
+    for (let e = 0; e < places.length; e++) {
+      x[e] ={probabilityData: new Array(places.length),driver:""};
+      for (let f = 0; f < places.length; f++) {
+        x[e].probabilityData[f] = {}
+      }
+    }
+
+    for (let e = 0; e < places.length; e++) {
+      for (let f = 0; f < places[e].length; f++) {
+        if (!x[e].driver && places[e][f]) {
+          x[e].driver = places[e][f].code
+        }
+        x[e].probabilityData[places[e][f].place - 1] = places[e][f];
+      }
+    }
+    return x;
+  }
 }

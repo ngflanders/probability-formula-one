@@ -19,4 +19,7 @@ export class FormulaoneInfoService {
     return this.http.get<any>(`http://localhost:3000/results/${year}/${round || ''}`);
   }
 
+  getSimulatedFinalStandings(year: number, round?: number): Observable<any> {
+    return this.http.get<any>(`http://localhost:3000/simulations/${year}/${round || ''}`);
+  }
 }
