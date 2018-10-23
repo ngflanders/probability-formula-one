@@ -12,7 +12,7 @@ export class FormulaoneInfoService {
   }
 
   getQualifying(year: number, round?: number): Observable<any> {
-    return this.http.get(`http://localhost:3000/races/${year}/${round || ''}`);
+    return this.http.get(`http://localhost:3000/qualifying/${year}/${round || ''}`);
   }
 
   getRaceResults(year: number, round?: number): Observable<any> {
