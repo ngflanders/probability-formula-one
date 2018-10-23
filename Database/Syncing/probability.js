@@ -77,7 +77,7 @@ getStandings(2018).then(sqlResult => {
       }
     }
 
-    storeResults(arrHist, 1005)
+    storeResults(arrHist, 1006)
   }
 });
 
