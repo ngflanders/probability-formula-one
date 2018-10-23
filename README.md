@@ -11,8 +11,8 @@ Modern formula one informational site featuring retrospective statistics.
 7. If using MySql 8.0, you may encounter an issue with node being unable to access mysql. See [this StackOverflow post](https://stackoverflow.com/questions/50093144/mysql-8-0-client-does-not-support-authentication-protocol-requested-by-server) if having this error. 
 8. The `Database/Syncing` project is a Node.js script will can be run by a Cron task on the development server or can be run manually.
 9. You will need to create a file in the root folder called `dbConnectionConfig.js` which will have the NodeJS MySQL connection information. See the `sampleDbConnectionConfig.js` file for guidance. Mainly it just needs your MySQL login information.
-10. If you choose to use cron, get this directory `Database/Syncing` onto a development machine which can run a Cron task, edit the bash script to match your directory path. In your Cron task editor (Ubuntu: `crontab -e`) add the following line `0 */2 * 3-11 0-1 /{your directory with}/cronscript.sh`
- - “At minute 0 past every 2nd hour on every Sunday and Monday in March through November.”
+10. If you choose to use cron, get this directory `Database/Syncing` onto a development machine which can run a Cron task, edit the bash script to match your directory path. In your Cron task editor (Ubuntu: `crontab -e`) add the following line `0 */4 * 3-11 0-1 /{your directory with}/cronscript.sh`
+ - “At minute 0 past every 4th hour on every Sunday and Monday in March through November.”
 11. If not using Cron, run the `main.js` file repeatedly until your database is caught up. Each run of the script will only grab the next race results that your database needs, so it will need to be run until it does not insert again.
 
 ### API
