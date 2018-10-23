@@ -146,3 +146,14 @@ create table if not exists status
 engine=MyISAM charset=utf8
 ;
 
+create table simulatedfinalstandings
+(
+	simulatedFinalStandingsId int auto_increment
+		primary key,
+	driverId int not null,
+	calculatedFromRaceId int not null,
+	Place int not null,
+	Probability float not null
+)
+;
+
