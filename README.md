@@ -20,3 +20,6 @@ Modern formula one informational site featuring retrospective statistics.
 
 ### Frontend
 1. Run `ng serve` from within the `Frontend\frontend-probability-formula-one` directory.
+
+### Championship Probabilities
+The `DatabaseCreationScript.sql` run earlier has an extra table, `simulatedfinalstandings` which will hold a drivers probability of finishing in a given spot. This table is currently populated by running the `probability.js` file which runs a Monte Carlo simulation of the rest of the season to experimentally determine the probabilities for drivers finishing in a specific position.
