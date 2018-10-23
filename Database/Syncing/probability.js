@@ -21,20 +21,32 @@ getStandings(2018).then(sqlResult => {
         realResults[i].raceResults.push({race: driverResults[j].race, results: driverResults[j].results});
       }
       realResults[i].standings = driverResults[driverResults.length - 1].standings;
+      const totalPositions = realResults[i].raceResults.reduce((total, num) => {
+        return total + num.results.position
+      },0);
+      realResults[i].standings.averagePosition = totalPositions / realResults[i].raceResults.length;
       realResults[i].standings.averagePoints = realResults[i].standings.points / realResults[i].raceResults.length
     }
 
     // StdDev
     for (let i = 0; i < realResults.length; i++) {
-      let sqrDiffs = [];
+      let pointsSqrDiff = [];
+      let positionSqrDiff = [];
       for (let j = 0; j < realResults[i].raceResults.length; j++) {
-        let avg = realResults[i].standings.averagePoints;
+        let pointsAvg = realResults[i].standings.averagePoints;
         let racePoints = realResults[i].raceResults[j].results.points;
-        let diff = avg - racePoints;
-        sqrDiffs.push(diff * diff);
+        let pointsDiff = pointsAvg - racePoints;
+        pointsSqrDiff.push(pointsDiff * pointsDiff);
+        let positionAvg = realResults[i].standings.averagePosition;
+        let racePosition = realResults[i].raceResults[j].results.position;
+        let positionDiff = positionAvg - racePosition;
+        positionSqrDiff.push(positionDiff * positionDiff);
       }
-      let avgSqrDiff = sqrDiffs.reduce((sum, value) => sum + value, 0) / sqrDiffs.length;
-      realResults[i].standings.stdDev = Math.sqrt(avgSqrDiff);
+      let avgPointsSqrDiff = pointsSqrDiff.reduce((sum, value) => sum + value, 0) / pointsSqrDiff.length;
+      let avgPositionSqrDiff = positionSqrDiff.reduce((sum, value) => sum + value, 0) / positionSqrDiff.length;
+
+      realResults[i].standings.pointsStdDev = Math.sqrt(avgPointsSqrDiff);
+      realResults[i].standings.positionStdDev = Math.sqrt(avgPositionSqrDiff);
       realResults[i].numRaces = realResults[i].raceResults.length;
       delete realResults[i].raceResults;
     }
@@ -142,9 +154,9 @@ function storeResults(places, raceId) {
     let vars = [];
     for (const dvr in placeObj) {
       q += values + ",";
-      vars.push(dvr, raceId, placeIdx+1, placeObj[dvr]);
+      vars.push(dvr, raceId, placeIdx + 1, placeObj[dvr]);
     }
-    storeDb.query(q.substring(0,q.length-1), vars, function (err, result) {
+    storeDb.query(q.substring(0, q.length - 1), vars, function (err, result) {
       if (err)
         console.error(err);
       if (--count === 0) {

@@ -16,7 +16,8 @@ dbStandings.connect(dbConnectionError);
 dbConstructorStandings.connect();
 
 var today = new Date();
-var yesterday = new Date().setDate(today - 1);
+var yesterday = new Date();
+yesterday.setDate(today - 1);
 
 checkLastInsert.checkLastInsert(dbQuali, "qualifying").then(
     function (lastQuali) {
