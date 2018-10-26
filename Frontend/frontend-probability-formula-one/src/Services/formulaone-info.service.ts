@@ -22,4 +22,12 @@ export class FormulaoneInfoService {
   getSimulatedFinalStandings(year: number, round?: number): Observable<any> {
     return this.http.get<any>(`http://localhost:3000/simulations/${year}/${round || ''}`);
   }
+
+  getDriverStandings(year:number,round?: number): Observable<any> {
+    return this.http.get<any>(`http://localhost:3000/standings/drivers/${year}/${round || ''}`);
+  }
+
+  getConstructorStandings(year:number,round?: number): Observable<any> {
+    return this.http.get<any>(`http://localhost:3000/standings/constructors/${year}/${round || ''}`);
+  }
 }
