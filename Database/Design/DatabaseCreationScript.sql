@@ -102,7 +102,7 @@ create table if not exists races
 	round int default '0' not null,
 	circuitId int default '0' not null,
 	name varchar(255) default '' not null,
-	date date default '0000-00-00' not null,
+	date date default '1000-01-01' not null,
 	time time null
 )
 engine=MyISAM charset=utf8
