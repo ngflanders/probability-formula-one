@@ -42,6 +42,7 @@ export class SeasonResultsComponent implements OnInit {
   };
 
   onClickHighlightProgress(evt) {
+    console.log(evt);
     this.clickedDriver = (this.clickedDriver !== evt.target.innerText) ? evt.target.innerText : "";
   }
 
