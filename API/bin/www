@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-// test comment 5
 const fs = require('fs');
 var app = require('../app');
 var debug = require('debug')('formulaonebackend:server');
