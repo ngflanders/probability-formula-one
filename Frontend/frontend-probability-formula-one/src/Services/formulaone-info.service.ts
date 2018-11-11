@@ -1,34 +1,35 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {environment} from '../environments/environment'
 
 @Injectable()
 export class FormulaoneInfoService {
 
-  baseAPI_url = "https://api.f1wiz.com";
   constructor(private http: HttpClient) { }
 
   getRaces(year: number, round?: number): Observable<any> {
-    return this.http.get(`${this.baseAPI_url}/races/${year}/${round || ''}`);
+    return this.http.get(`${environment.apiUrl}/races/${year}/${round || ''}`);
   }
 
   getQualifying(year: number, round?: number): Observable<any> {
-    return this.http.get(`${this.baseAPI_url}/qualifying/${year}/${round || ''}`);
+    return this.http.get(`${environment.apiUrl}/qualifying/${year}/${round || ''}`);
   }
 
   getRaceResults(year: number, round?: number): Observable<any> {
-    return this.http.get<any>(`${this.baseAPI_url}/results/${year}/${round || ''}`);
+    console.log(environment.apiUrl);
+    return this.http.get<any>(`${environment.apiUrl}/results/${year}/${round || ''}`);
   }
 
   getSimulatedFinalStandings(year: number, round?: number): Observable<any> {
-    return this.http.get<any>(`${this.baseAPI_url}/simulations/${year}/${round || ''}`);
+    return this.http.get<any>(`${environment.apiUrl}/simulations/${year}/${round || ''}`);
   }
 
   getDriverStandings(year:number,round?: number): Observable<any> {
-    return this.http.get<any>(`${this.baseAPI_url}/standings/drivers/${year}/${round || ''}`);
+    return this.http.get<any>(`${environment.apiUrl}/standings/drivers/${year}/${round || ''}`);
   }
 
   getConstructorStandings(year:number,round?: number): Observable<any> {
-    return this.http.get<any>(`${this.baseAPI_url}/standings/constructors/${year}/${round || ''}`);
+    return this.http.get<any>(`${environment.apiUrl}/standings/constructors/${year}/${round || ''}`);
   }
 }
