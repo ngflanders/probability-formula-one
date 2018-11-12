@@ -9,7 +9,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class SeasonResultsComponent implements OnInit {
   results: any;
-  clickedDriver: string
+  clickedDriver: string;
 
   constructor(
     private resultsService: FormulaoneInfoService,
@@ -23,7 +23,6 @@ export class SeasonResultsComponent implements OnInit {
     }
     this.resultsService.getRaceResults(year).subscribe(res => {
       this.results = this.myGroupBy(res, 'positionOrder');
-      console.log(this.results);
     });
   }
 
@@ -42,7 +41,7 @@ export class SeasonResultsComponent implements OnInit {
   };
 
   onClickHighlightProgress(evt) {
-    this.clickedDriver = (this.clickedDriver !== evt.target.innerText) ? evt.target.innerText.trim() : "";
+    this.clickedDriver = (this.clickedDriver !== evt.target.innerText.trim()) ? evt.target.innerText.trim() : "";
   }
 
 }
