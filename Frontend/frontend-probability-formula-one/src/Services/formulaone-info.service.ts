@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators'
 import {environment} from '../environments/environment'
 
 @Injectable()
@@ -17,11 +18,15 @@ export class FormulaoneInfoService {
   }
 
   getRaceResults(year: number, round?: number): Observable<any> {
-    return this.http.get<any>(`${environment.apiUrl}/results/${year}/${round || ''}`);
+    return this.http.get<any>(`${environment.apiUrl}/results/${year}/${round || ''}`).pipe(
+      map(res => this.myGroupBy(res, 'positionOrder'))
+    );
   }
 
   getSimulatedFinalStandings(year: number, round?: number): Observable<any> {
-    return this.http.get<any>(`${environment.apiUrl}/simulations/${year}/${round || ''}`);
+    return this.http.get<any>(`${environment.apiUrl}/simulations/${year}/${round || ''}`).pipe(
+      map(res => this.myGroupBy(res, 'driverRef'))
+    );
   }
 
   getDriverStandings(year:number,round?: number): Observable<any> {
@@ -31,4 +36,17 @@ export class FormulaoneInfoService {
   getConstructorStandings(year:number,round?: number): Observable<any> {
     return this.http.get<any>(`${environment.apiUrl}/standings/constructors/${year}/${round || ''}`);
   }
+
+  private myGroupBy(xs, key) {
+    var grouped = xs.reduce(function (rv, x) {
+      (rv[x[key]] = rv[x[key]] || []).push(x);
+      return rv;
+    }, {});
+
+    var arr = [];
+    for (var s in grouped) {
+      arr.push(grouped[s])
+    }
+    return arr;
+  };
 }

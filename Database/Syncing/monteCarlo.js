@@ -1,4 +1,5 @@
 const PointsMap = {1:25,2:18,3:15,4:12,5:10,6:8,7:6,8:4,9:2,10:1};
+const CRASH_ODDS = 0.01;
 
 // function monteCarlo(preppedData) {
 //   const racesLeft = 21 - preppedData[0].numRaces;
@@ -22,15 +23,14 @@ const PointsMap = {1:25,2:18,3:15,4:12,5:10,6:8,7:6,8:4,9:2,10:1};
 // }
 
 // Points Monte Carlo
-function monteCarlo(preppedData) {
-  const racesLeft = 21 - preppedData[0].numRaces;
+function monteCarlo(preppedData, racesLeft) {
   for (let i = 0; i < preppedData.length; i++) {
     preppedData[i].futureResults = [];
     for (let j = 0; j < racesLeft; j++) {
-      var points = normal_random(preppedData[i].standings.averagePoints,preppedData[i].standings.pointsStdDev);
-      points = points > 25 ? 25 : points < 0 ? 0 : points;
-      if (points > 25 || points < 0) {
-        console.log(points)
+      let points = 0;
+      if (Math.random() > CRASH_ODDS) {
+        points = normal_random(preppedData[i].standings.averagePoints, preppedData[i].standings.pointsStdDev);
+        points = points > 25 ? 25 : points < 0 ? 0 : points;
       }
       preppedData[i].futureResults.push(points)
     }
@@ -59,6 +59,5 @@ function normal_random(mean, variance) {
   X = mean + Math.sqrt(variance) * X;
   return X;
 }
-
 
 module.exports = {monteCarlo};

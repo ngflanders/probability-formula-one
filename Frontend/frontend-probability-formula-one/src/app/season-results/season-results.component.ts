@@ -14,7 +14,7 @@ export class SeasonResultsComponent implements OnInit {
   constructor(
     private resultsService: FormulaoneInfoService,
     private route: ActivatedRoute,
-    ) {  }
+  ) {  }
 
   ngOnInit() {
     let year = +this.route.snapshot.paramMap.get('year');
@@ -22,23 +22,9 @@ export class SeasonResultsComponent implements OnInit {
       year = new Date().getFullYear();
     }
     this.resultsService.getRaceResults(year).subscribe(res => {
-      this.results = this.myGroupBy(res, 'positionOrder');
+      this.results = res;
     });
   }
-
-
-  myGroupBy(xs, key) {
-    var grouped = xs.reduce(function (rv, x) {
-      (rv[x[key]] = rv[x[key]] || []).push(x);
-      return rv;
-    }, {});
-
-    var arr = [];
-    for (var s in grouped) {
-      arr.push(grouped[s])
-    }
-    return arr;
-  };
 
   onClickHighlightProgress(evt) {
     this.clickedDriver = (this.clickedDriver !== evt.target.innerText.trim()) ? evt.target.innerText.trim() : "";

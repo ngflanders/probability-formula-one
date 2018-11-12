@@ -7,7 +7,6 @@ const storeDb = mysql.createConnection(dbConnectionConfig);
 fetchDb.connect();
 
 getStandings(2018).then(sqlResult => {
-  fetchDb.end();
 
   // Organizing the object for data manipulation
   if (sqlResult) {
@@ -23,7 +22,7 @@ getStandings(2018).then(sqlResult => {
       realResults[i].standings = driverResults[driverResults.length - 1].standings;
       const totalPositions = realResults[i].raceResults.reduce((total, num) => {
         return total + num.results.position
-      },0);
+      }, 0);
       realResults[i].standings.averagePosition = totalPositions / realResults[i].raceResults.length;
       realResults[i].standings.averagePoints = realResults[i].standings.points / realResults[i].raceResults.length
     }
@@ -56,28 +55,32 @@ getStandings(2018).then(sqlResult => {
       arrHist.push({});
     }
 
-    const ITERATIONS = 50000;
-    for (let i = 0; i < ITERATIONS; i++) {
-      let monteCarloRes = monteCarlo.monteCarlo(realResults);
-      for (let j = 0; j < monteCarloRes.length; j++) {
-        let dvr = monteCarloRes[j];
-        if (!arrHist[j][dvr]) {
-          arrHist[j][dvr] = 1;
-        } else {
-          arrHist[j][dvr] += 1;
+    getMostRecentRaceId().then(mostRecentRaceId => {
+      getLastRaceIdOfSeason(2018).then(lastRaceId => {
+        fetchDb.end();
+        const ITERATIONS = 50000;
+        for (let i = 0; i < ITERATIONS; i++) {
+          let monteCarloRes = monteCarlo.monteCarlo(realResults, lastRaceId[0].lastRaceId - mostRecentRaceId[0].recentRaceId);
+          for (let j = 0; j < monteCarloRes.length; j++) {
+            let dvr = monteCarloRes[j];
+            if (!arrHist[j][dvr]) {
+              arrHist[j][dvr] = 1;
+            } else {
+              arrHist[j][dvr] += 1;
+            }
+          }
         }
-      }
-    }
-    // console.log(arrHist);
 
-    for (let j = 0; j < arrHist.length; j++) {
-      let placeHist = arrHist[j];
-      for (d in placeHist) {
-        placeHist[d] = parseFloat((placeHist[d] / ITERATIONS).toFixed(4));
-      }
-    }
+        for (let j = 0; j < arrHist.length; j++) {
+          let placeHist = arrHist[j];
+          for (d in placeHist) {
+            placeHist[d] = parseFloat((placeHist[d] / ITERATIONS).toFixed(4));
+          }
+        }
 
-    storeResults(arrHist, 1006)
+        storeResults(arrHist, mostRecentRaceId[0].recentRaceId)
+      });
+    });
   }
 });
 
@@ -99,6 +102,31 @@ function getStandings(year) {
     });
   })
 }
+
+function getMostRecentRaceId() {
+  let query = "select max(raceId) as recentRaceId from results;";
+  return new Promise(function (resolve, reject) {
+    fetchDb.query(query, function (err, result) {
+      if (err) {
+        reject(err)
+      }
+      resolve(result);
+    });
+  })
+}
+
+function getLastRaceIdOfSeason(year) {
+  let query = "select max(raceId) as lastRaceId from races where year = " + year;
+  return new Promise(function (resolve, reject) {
+    fetchDb.query(query, function (err, result) {
+      if (err) {
+        reject(err)
+      }
+      resolve(result);
+    });
+  })
+}
+
 
 function organizeObject(sqlResult) {
   let newRes = sqlResult.map(r => {

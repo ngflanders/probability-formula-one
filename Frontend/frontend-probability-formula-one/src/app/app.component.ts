@@ -15,7 +15,6 @@ export class AppComponent implements OnInit {
 
   constructor(
     private resultsService: FormulaoneInfoService,
-    private http: HttpClient
   ) {
   }
 

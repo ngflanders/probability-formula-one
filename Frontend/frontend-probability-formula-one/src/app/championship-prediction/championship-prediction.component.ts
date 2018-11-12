@@ -25,30 +25,16 @@ export class ChampionshipPredictionComponent implements OnInit {
       this.year = new Date().getFullYear();
     }
     this.resultsService.getSimulatedFinalStandings(this.year).subscribe(res => {
-      this.predictedPlaces = this.myGroupBy(res, 'driverRef');
+      this.predictedPlaces = res;
       this.displayTable = this.buildTable(this.predictedPlaces);
       console.log(this.displayTable)
     });
   }
 
-
-  myGroupBy(xs, key) {
-    var grouped = xs.reduce(function (rv, x) {
-      (rv[x[key]] = rv[x[key]] || []).push(x);
-      return rv;
-    }, {});
-
-    var arr = [];
-    for (var s in grouped) {
-      arr.push(grouped[s])
-    }
-    return arr;
-  };
-
   buildTable(places) {
     let x = new Array(places.length);
     for (let e = 0; e < places.length; e++) {
-      x[e] ={probabilityData: new Array(places.length),driver:""};
+      x[e] = {probabilityData: new Array(places.length), driver: ""};
       for (let f = 0; f < places.length; f++) {
         x[e].probabilityData[f] = {}
       }
