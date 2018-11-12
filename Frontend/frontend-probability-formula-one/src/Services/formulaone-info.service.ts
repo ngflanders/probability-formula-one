@@ -18,9 +18,7 @@ export class FormulaoneInfoService {
   }
 
   getRaceResults(year: number, round?: number): Observable<any> {
-    return this.http.get<any>(`${environment.apiUrl}/results/${year}/${round || ''}`).pipe(
-      map(res => this.myGroupBy(res, 'positionOrder'))
-    );
+    return this.http.get<any>(`${environment.apiUrl}/results/${year}/${round || ''}`)
   }
 
   getSimulatedFinalStandings(year: number, round?: number): Observable<any> {
