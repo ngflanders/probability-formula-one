@@ -45,6 +45,17 @@ export class ChampionshipPredictionComponent implements OnInit {
         if (!x[e].driver && places[e][f]) {
           x[e].driver = places[e][f].code
         }
+        var prob = places[e][f].Probability;
+        if (prob > .99 && prob < 1) {
+          places[e][f].Desc = ">99%"
+        } else if (prob < .01 && prob > 0) {
+          places[e][f].Desc = "<1%"
+        } else if (prob === 0) {
+          places[e][f].Desc = "-"
+        }
+        if (!isNaN( places[e][f].Probability)) {
+          places[e][f].Probability = Math.round(places[e][f].Probability * 100) / 100;
+        }
         x[e].probabilityData[places[e][f].place - 1] = places[e][f];
       }
     }
