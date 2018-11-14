@@ -2,13 +2,13 @@
   <thead  class="thead-light">
   <tr>
     <th>#</th>
-    <th style="width: 4.75%" *ngFor="let a of displayTable; let i = index">
+    <th style="width: 4.75%" *ngFor="let a of displayTableByDriver; let i = index">
       {{i+1}}
     </th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let r of displayTable;index as j">
+  <tr *ngFor="let r of displayTableByDriver;index as j">
     <td>{{r.driver}}</td>
     <td *ngFor="let rr of r.probabilityData" style="color: snow" [ngStyle]="{'background-color': 'rgba(225,6,0,'+rr.Probability+')'}">
       {{rr.Desc ? rr.Desc+'%' : (rr.Probability ? (rr.Probability * 100)+'%' : '-')}}

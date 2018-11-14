@@ -18,13 +18,11 @@ export class FormulaoneInfoService {
   }
 
   getRaceResults(year: number, round?: number): Observable<any> {
-    return this.http.get<any>(`${environment.apiUrl}/results/${year}/${round || ''}`)
+    return this.http.get<any>(`${environment.apiUrl}/results/${year}/${round || ''}`);
   }
 
   getSimulatedFinalStandings(year: number, round?: number): Observable<any> {
-    return this.http.get<any>(`${environment.apiUrl}/simulations/${year}/${round || ''}`).pipe(
-      map(res => this.myGroupBy(res, 'driverRef'))
-    );
+    return this.http.get<any>(`${environment.apiUrl}/simulations/${year}/${round || ''}`);
   }
 
   getDriverStandings(year:number,round?: number): Observable<any> {
@@ -35,7 +33,7 @@ export class FormulaoneInfoService {
     return this.http.get<any>(`${environment.apiUrl}/standings/constructors/${year}/${round || ''}`);
   }
 
-  private myGroupBy(xs, key) {
+  myGroupBy(xs, key) {
     var grouped = xs.reduce(function (rv, x) {
       (rv[x[key]] = rv[x[key]] || []).push(x);
       return rv;
