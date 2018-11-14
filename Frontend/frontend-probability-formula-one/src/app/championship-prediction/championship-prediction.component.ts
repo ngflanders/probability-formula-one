@@ -29,9 +29,11 @@ export class ChampionshipPredictionComponent implements OnInit {
     this.resultsService.getSimulatedFinalStandings(this.year).subscribe(res => {
       this.predictedPlaces = res;
       this.predictedPlacesByDriver = this.resultsService.myGroupBy(res, 'driverRef');
+      this.predictedPlacesByPlace = this.resultsService.myGroupBy(res, 'place');
       this.displayTableByDriver = this.buildTable(this.predictedPlacesByDriver);
+      console.log(res);
+      console.log(this.predictedPlacesByDriver);
       console.log(this.displayTableByDriver);
-      console.log(res)
     });
   }
 
