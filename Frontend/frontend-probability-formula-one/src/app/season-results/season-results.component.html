@@ -1,16 +1,19 @@
-<!--<div class="card" style="width: 18rem;">-->
-  <!--<div class="card-body">-->
-    <!--<h5 class="card-title">Card title</h5>-->
-    <!--<ul class="list-group list-group-flush">-->
-      <!--<li class="list-group-item">Cras justo odio</li>-->
-      <!--<li class="list-group-item">Dapibus ac facilisis in</li>-->
-      <!--<li class="list-group-item">Vestibulum at eros</li>-->
-    <!--</ul>-->
-  <!--</div>-->
-<!--</div>-->
+<div id="content-mobile">
 
-<!--<pre>{{raceResults | json}}</pre>-->
+<div class="card" *ngFor="let race of raceResults" style="margin: 20px">
+  <div class="card-body">
+    <h5 class="card-title">{{race[0].country}}</h5>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item" *ngFor="let result of race | slice:0:3">{{result.positionOrder}}. {{result.surname}}</li>
+    </ul>
+  </div>
+</div>
 
+<pre>{{raceResults | json}}</pre>
+
+</div>
+
+<div id="content-desktop">
 <table class="table table-dark table-bordered table-striped table-sm">
   <caption>Click on a driver to track their progress. Click again to turn off.</caption>
   <thead class="thead-light">
@@ -30,3 +33,5 @@
   </tr>
   </tbody>
 </table>
+  <pre>{{positionResults | json}}</pre>
+</div>
