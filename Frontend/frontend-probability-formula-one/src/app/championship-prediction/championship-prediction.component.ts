@@ -50,8 +50,6 @@ export class ChampionshipPredictionComponent implements OnInit {
           places[e][f].Desc = ">99"
         } else if (prob < .01 && prob > 0) {
           places[e][f].Desc = "<1"
-        } else if (prob === 0) {
-          places[e][f].Desc = "-"
         }
         if (!isNaN( places[e][f].Probability)) {
           places[e][f].Probability = Math.round(places[e][f].Probability * 100) / 100;
