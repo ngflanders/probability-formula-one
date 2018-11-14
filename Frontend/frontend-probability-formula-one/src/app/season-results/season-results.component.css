@@ -1,4 +1,4 @@
-#content-desktop {display: block; background-color: lightgray}
+#content-desktop {display: block}
 #content-mobile {display: none}
 
 @media screen and (max-width: 768px) {
