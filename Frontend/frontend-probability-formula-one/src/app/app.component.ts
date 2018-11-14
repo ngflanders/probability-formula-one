@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormulaoneInfoService} from "../Services/formulaone-info.service";
 import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -15,18 +16,20 @@ export class AppComponent implements OnInit {
 
   constructor(
     private resultsService: FormulaoneInfoService,
+    private router: Router
   ) {
   }
 
   ngOnInit() {
-    this.resultsService.getDriverStandings(new Date().getFullYear(), 18).subscribe(res => {
-      this.driverStandings = res;
-      console.log(this.driverStandings);
-    });
-    this.resultsService.getConstructorStandings(new Date().getFullYear(), 18).subscribe(res => {
-      this.constructorStandings = res;
-      console.log(this.constructorStandings);
-    });
+    this.router.navigate(['/season-results']);
+    // this.resultsService.getDriverStandings(new Date().getFullYear(), 18).subscribe(res => {
+    //   this.driverStandings = res;
+    //   console.log(this.driverStandings);
+    // });
+    // this.resultsService.getConstructorStandings(new Date().getFullYear(), 18).subscribe(res => {
+    //   this.constructorStandings = res;
+    //   console.log(this.constructorStandings);
+    // });
   }
 
 }
