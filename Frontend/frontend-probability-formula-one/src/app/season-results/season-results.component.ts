@@ -25,8 +25,8 @@ export class SeasonResultsComponent implements OnInit {
     }
     this.resultsService.getRaceResults(year).subscribe(res => {
       this.uncleanedResults = res;
-      this.positionResults = this.myGroupBy(res, 'positionOrder');
-      this.raceResults = this.myGroupBy(res, 'country');
+      this.positionResults = this.resultsService.myGroupBy(res, 'positionOrder');
+      this.raceResults = this.resultsService.myGroupBy(res, 'country');
     });
   }
 
@@ -34,17 +34,5 @@ export class SeasonResultsComponent implements OnInit {
     this.clickedDriver = (this.clickedDriver !== evt.target.innerText.trim()) ? evt.target.innerText.trim() : "";
   }
 
-   myGroupBy(xs, key) {
-    var grouped = xs.reduce(function (rv, x) {
-      (rv[x[key]] = rv[x[key]] || []).push(x);
-      return rv;
-    }, {});
-
-    var arr = [];
-    for (var s in grouped) {
-      arr.push(grouped[s])
-    }
-    return arr;
-  };
 
 }

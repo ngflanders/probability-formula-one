@@ -11,8 +11,10 @@ export class ChampionshipPredictionComponent implements OnInit {
 
   year: number;
   round: number;
+  predictedPlacesByDriver;
+  predictedPlacesByPlace;
   predictedPlaces;
-  displayTable;
+  displayTableByDriver;
 
   constructor(
     private resultsService: FormulaoneInfoService,
@@ -26,8 +28,12 @@ export class ChampionshipPredictionComponent implements OnInit {
     }
     this.resultsService.getSimulatedFinalStandings(this.year).subscribe(res => {
       this.predictedPlaces = res;
-      this.displayTable = this.buildTable(this.predictedPlaces);
-      console.log(this.displayTable)
+      this.predictedPlacesByDriver = this.resultsService.myGroupBy(res, 'driverRef');
+      this.predictedPlacesByPlace = this.resultsService.myGroupBy(res, 'place');
+      this.displayTableByDriver = this.buildTable(this.predictedPlacesByDriver);
+      console.log(res);
+      console.log(this.predictedPlacesByDriver);
+      console.log(this.displayTableByDriver);
     });
   }
 
@@ -47,11 +53,9 @@ export class ChampionshipPredictionComponent implements OnInit {
         }
         var prob = places[e][f].Probability;
         if (prob > .99 && prob < 1) {
-          places[e][f].Desc = ">99%"
+          places[e][f].Desc = ">99"
         } else if (prob < .01 && prob > 0) {
-          places[e][f].Desc = "<1%"
-        } else if (prob === 0) {
-          places[e][f].Desc = "-"
+          places[e][f].Desc = "<1"
         }
         if (!isNaN( places[e][f].Probability)) {
           places[e][f].Probability = Math.round(places[e][f].Probability * 100) / 100;
