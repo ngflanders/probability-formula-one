@@ -2,7 +2,6 @@ let express = require('express');
 let router = express.Router();
 let db = require('../util/dbconnection');
 
-
 router.get('/', function (req, res, next) {
   res.status(400).send('Invalid route: must match Express route "results/:year/:round?"');
 });
