@@ -23,7 +23,7 @@ function fetchResults(apiRes, year, round) {
       "join drivers on drivers.driverId = simulatedfinalstandings.driverId";
   if (year) {
     query += " join races on races.raceId = simulatedfinalstandings.calculatedFromRaceId " +
-        "where races.year = " + db.escape(year);
+        "where Probability <> 0 and races.year = " + db.escape(year);
     if (round) {
       query += " and races.round = " + db.escape(round);
     } else {
