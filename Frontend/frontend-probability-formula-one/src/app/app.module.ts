@@ -9,6 +9,7 @@ import {FormulaoneInfoService} from "../Services/formulaone-info.service";
 import {AppRoutingModule} from './app-routing.module';
 import {NavbarComponent} from "./navbar/navbar.component";
 import {ChampionshipPredictionComponent} from "./championship-prediction/championship-prediction.component";
+import {HomeComponent} from "./home/home.component";
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import {ChampionshipPredictionComponent} from "./championship-prediction/champio
   declarations: [
     AppComponent,
     NavbarComponent,
+    HomeComponent,
     SeasonResultsComponent,
     ChampionshipPredictionComponent
   ],
