@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormulaoneInfoService} from '../../Services/formulaone-info.service';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-season-results',
@@ -12,18 +12,20 @@ export class SeasonResultsComponent implements OnInit {
   raceResults: any;
   uncleanedResults: any;
   clickedDriver: string;
+  year: number;
 
   constructor(
     private resultsService: FormulaoneInfoService,
     private route: ActivatedRoute,
+    private router: Router
   ) {  }
 
   ngOnInit() {
-    let year = +this.route.snapshot.paramMap.get('year');
-    if (!year) {
-      year = new Date().getFullYear();
+    this.year = +this.route.snapshot.paramMap.get('year');
+    if (!this.year) {
+      this.year = new Date().getFullYear();
     }
-    this.resultsService.getRaceResults(year).subscribe(res => {
+    this.resultsService.getRaceResults(this.year).subscribe(res => {
       this.uncleanedResults = res;
       this.positionResults = this.resultsService.myGroupBy(res, 'positionOrder');
       this.raceResults = this.resultsService.myGroupBy(res, 'country');
@@ -32,6 +34,12 @@ export class SeasonResultsComponent implements OnInit {
 
   onClickHighlightProgress(evt) {
     this.clickedDriver = (this.clickedDriver !== evt.target.innerText.trim()) ? evt.target.innerText.trim() : "";
+  }
+
+  openRaceResult(race) {
+    console.log(this.year);
+    console.log(race[0].round);
+    this.router.navigate([`/race-result/${this.year}/${race[0].round}`]);
   }
 
 

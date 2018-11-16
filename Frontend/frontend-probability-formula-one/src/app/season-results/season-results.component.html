@@ -1,5 +1,5 @@
 <div id="content-mobile">
-  <div class="card" *ngFor="let race of raceResults" style="margin: 20px">
+  <div class="card" *ngFor="let race of raceResults" style="margin: 20px" (click)="openRaceResult(race)">
     <div class="card-body">
       <h5 class="card-title">{{race[0].country}}</h5>
       <ul class="list-group list-group-flush">
