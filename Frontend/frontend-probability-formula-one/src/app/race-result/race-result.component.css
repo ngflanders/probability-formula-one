@@ -2,14 +2,28 @@ pre {
   color: white;
 }
 
-#content-desktop {display: block}
-#content-mobile {display: none}
+.race-title {
+  color: #fff;
+  text-align: center;
+  margin-top: 10px;
+}
+
+#content-desktop {
+  display: block
+}
+
+#content-mobile {
+  display: none
+}
 
 @media screen and (max-width: 768px) {
+  #content-desktop {
+    display: none;
+  }
 
-  #content-desktop {display: none;}
-  #content-mobile {display: block;}
-
+  #content-mobile {
+    display: block;
+  }
 }
 
 

@@ -17,7 +17,7 @@ export class FormulaoneInfoService {
     return this.http.get(`${environment.apiUrl}/qualifying/${year}/${round || ''}`);
   }
 
-  getRaceResults(year: number, round?: number): Observable<any> {
+  getRaceResults(year: number, round?: number): Observable<[any]> {
     return this.http.get<any>(`${environment.apiUrl}/results/${year}/${round || ''}`);
   }
 

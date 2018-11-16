@@ -37,8 +37,6 @@ export class SeasonResultsComponent implements OnInit {
   }
 
   openRaceResult(race) {
-    console.log(this.year);
-    console.log(race[0].round);
     this.router.navigate([`/race-result/${this.year}/${race[0].round}`]);
   }
 
