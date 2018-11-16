@@ -36,8 +36,8 @@ export class SeasonResultsComponent implements OnInit {
     this.clickedDriver = (this.clickedDriver !== evt.target.innerText.trim()) ? evt.target.innerText.trim() : "";
   }
 
-  openRaceResult(race) {
-    this.router.navigate([`/race-result/${this.year}/${race[0].round}`]);
+  openRaceResult(round) {
+    this.router.navigate([`/race-result/${this.year}/${round}`]);
   }
 
 

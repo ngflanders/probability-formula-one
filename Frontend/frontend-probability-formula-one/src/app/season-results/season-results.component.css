@@ -1,11 +1,39 @@
-#content-desktop {display: block}
-#content-mobile {display: none}
+pre {
+  color: white;
+}
+
+.race-card {
+  margin: 20px;
+  cursor: pointer;
+}
+.race-card:hover {
+  border-color: gray;
+}
+
+th {
+  cursor: pointer;
+}
+
+caption {
+  padding-bottom: 0;
+}
+
+#content-desktop {
+  display: block
+}
+
+#content-mobile {
+  display: none
+}
 
 @media screen and (max-width: 768px) {
+  #content-desktop {
+    display: none;
+  }
 
-  #content-desktop {display: none;}
-  #content-mobile {display: block;}
-
+  #content-mobile {
+    display: block;
+  }
 }
 
 

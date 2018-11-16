@@ -23,11 +23,11 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.resultsService.getDriverStandings(new Date().getFullYear(), 18).subscribe(res => {
       this.driverStandings = res;
-      console.log(this.driverStandings);
+      // console.log(this.driverStandings);
     });
     this.resultsService.getConstructorStandings(new Date().getFullYear(), 18).subscribe(res => {
       this.constructorStandings = res;
-      console.log(this.constructorStandings);
+      // console.log(this.constructorStandings);
     });
   }
 
