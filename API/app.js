@@ -10,6 +10,7 @@ const qualifyingRouter = require('./routes/qualifying');
 const racesRouter = require('./routes/races');
 const simsRouter = require('./routes/simulations');
 const standingsRouter = require('./routes/standings');
+const driversRouter = require('./routes/driver');
 
 let app = express();
 
@@ -26,5 +27,6 @@ app.use('/qualifying', qualifyingRouter);
 app.use('/races', racesRouter);
 app.use('/simulations', simsRouter);
 app.use('/standings', standingsRouter);
+app.use('/driver', driversRouter);
 
 module.exports = app;

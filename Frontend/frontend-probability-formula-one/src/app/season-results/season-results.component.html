@@ -1,10 +1,10 @@
 <div id="content-mobile">
-  <div class="card race-card" *ngFor="let race of raceResults" (click)="openRaceResult(race[0].round)">
+  <div class="card f1-card" *ngFor="let race of raceResults">
     <div class="card-body">
-      <h4 class="card-title" style="text-decoration: underline">{{race[0].country}}</h4>
+      <h4 class="card-title race-title" (click)="openRaceResult(race[0].round)">{{race[0].country}}</h4>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item" *ngFor="let result of race | slice:0:3">{{result.positionOrder}}.
-          {{result.surname}} ({{result.constructor}})
+        <li *ngFor="let result of race | slice:0:3" class="list-group-item race-result-driver" (click)="openDriver(result)">
+          {{result.positionOrder}}. {{result.surname}} ({{result.constructor}})
         </li>
       </ul>
     </div>
@@ -14,8 +14,11 @@
 
 <div id="content-desktop">
   <table class="table table-dark table-bordered table-striped table-sm">
-    <caption style="padding-left: .75rem;color: #dddddd;">Click on a driver to track their progress. Click again to turn off. </caption>
-    <caption style="padding-left: .75rem;color: #dddddd;">Click on a race to see more detailed result information. </caption>
+    <caption style="padding-left: .75rem;color: #dddddd;">Click on a driver to track their progress. Click again to turn
+      off.
+    </caption>
+    <caption style="padding-left: .75rem;color: #dddddd;">Click on a race to see more detailed result information.
+    </caption>
     <thead class="thead-light">
     <tr>
       <th>#</th>

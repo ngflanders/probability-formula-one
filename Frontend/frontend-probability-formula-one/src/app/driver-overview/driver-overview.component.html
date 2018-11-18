@@ -1,0 +1,36 @@
+<div id="content-mobile">
+  <h2 class="driver-title">{{driverInfo?.forename}} {{driverInfo?.surname}} ({{driverInfo?.code}})</h2>
+  <div class="card f1-card" *ngFor="let race of thisSeasonResults" (click)="openRace(race)">
+    <div class="card-body">
+      <h4 class="card-title">{{race.position || race.positionText}} - {{race.name}}</h4>
+      <h6 class="card-subtitle mb-2 text-muted">Grid: {{race.grid}}</h6>
+      <h6 class="card-subtitle mb-2 text-muted" *ngIf="race.points">Points: {{race.points}}</h6>
+    </div>
+  </div>
+  <pre>{{driverInfo | json}}</pre>
+  <pre>{{thisSeasonResults | json}}</pre>
+
+</div>
+
+<div id="content-desktop">
+  <h2 class="driver-title">{{driverInfo?.forename}} {{driverInfo?.surname}} ({{driverInfo?.code}})</h2>
+  <div class="card"  *ngIf="driverInfo" style="margin: 20px; width: max-content">
+    <div class="card-body">
+      <h4 class="card-title">Info</h4>
+
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><b>Nationality:</b> {{driverInfo.nationality}}</li>
+        <li class="list-group-item"><b>Date of Birth:</b> {{driverInfo.dob | date}}</li>
+
+      </ul>
+    </div>
+  </div>
+
+  <h5 style="color: white; margin: 20px">Working on it. Try mobile view!</h5>
+
+  <!--<pre>{{driverInfo | json}}</pre>-->
+  <!--<pre>{{thisSeasonResults | json}}</pre>-->
+
+</div>
+
+

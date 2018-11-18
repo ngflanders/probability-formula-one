@@ -1,24 +1,16 @@
-.race-card {
+#content-mobile .driver-title {
+  color: white;
   margin: 20px;
-
+  text-align: center;
 }
 
-.race-title {
-  text-decoration: underline;
-  cursor: pointer;
+#content-desktop .driver-title {
+  color: white;
+  margin: 20px;
 }
 
-.race-result-driver {
-  cursor: pointer;
-}
 
-th {
-  cursor: pointer;
-}
 
-caption {
-  padding-bottom: 0;
-}
 
 #content-desktop {
   display: block

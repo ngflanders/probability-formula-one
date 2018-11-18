@@ -33,6 +33,14 @@ export class FormulaoneInfoService {
     return this.http.get<any>(`${environment.apiUrl}/standings/constructors/${year}/${round || ''}`);
   }
 
+  getDriverInfo(driverRef: string): Observable<any> {
+    return this.http.get<any>(`${environment.apiUrl}/driver/${driverRef}`);
+  }
+
+  getDriverResults(driverRef: string, year: number): Observable<any> {
+    return this.http.get<any>(`${environment.apiUrl}/driver/${driverRef}/${year}`);
+  }
+
   myGroupBy(xs, key) {
     var grouped = xs.reduce(function (rv, x) {
       (rv[x[key]] = rv[x[key]] || []).push(x);

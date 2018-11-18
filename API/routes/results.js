@@ -20,7 +20,7 @@ router.get('/:year/:round', function (req, res, next) {
 
 function fetchResults(apiRes, year, round) {
   let query = "select positionOrder, surname,code,results.number, constructors.name as constructor, points,grid, " +
-      "races.name as race, races.round as round, country from results" +
+      "races.name as race, races.round as round, country, driverRef from results" +
       " join drivers on drivers.driverId = results.driverId" +
       " join constructors on results.constructorId = constructors.constructorId";
   if (year) {

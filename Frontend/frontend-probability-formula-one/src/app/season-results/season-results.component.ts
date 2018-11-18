@@ -40,5 +40,8 @@ export class SeasonResultsComponent implements OnInit {
     this.router.navigate([`/race-result/${this.year}/${round}`]);
   }
 
+  openDriver(result) {
+    this.router.navigate([`/driver/${result.driverRef}`]);
+  }
 
 }

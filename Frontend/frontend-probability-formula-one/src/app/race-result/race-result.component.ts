@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormulaoneInfoService} from '../../Services/formulaone-info.service';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-race-result',
@@ -17,6 +17,8 @@ export class RaceResultComponent implements OnInit {
   constructor(
     private resultsService: FormulaoneInfoService,
     private route: ActivatedRoute,
+    private router: Router
+
   ) {
   }
 
@@ -35,5 +37,8 @@ export class RaceResultComponent implements OnInit {
     });
   }
 
+  openDriver(result) {
+    this.router.navigate([`/driver/${result.driverRef}`]);
+  }
 
 }

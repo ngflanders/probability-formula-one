@@ -11,6 +11,7 @@ import {NavbarComponent} from "./navbar/navbar.component";
 import {ChampionshipPredictionComponent} from "./championship-prediction/championship-prediction.component";
 import {HomeComponent} from "./home/home.component";
 import {RaceResultComponent} from "./race-result/race-result.component";
+import {DriverOverviewComponent} from "./driver-overview/driver-overview.component";
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import {RaceResultComponent} from "./race-result/race-result.component";
     HomeComponent,
     SeasonResultsComponent,
     RaceResultComponent,
+    DriverOverviewComponent,
     ChampionshipPredictionComponent
   ],
   providers: [FormulaoneInfoService],

@@ -3,4 +3,16 @@ body {
   font-family: 'Pragati Narrow', sans-serif;
 }
 
+.f1-card {
+  margin: 20px;
+  cursor: pointer;
+}
+
+.f1-card:hover {
+  border-color: gray;
+}
+
+pre {
+  color: white;
+}
 /*#d9d9d9*/
