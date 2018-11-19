@@ -1,5 +1,5 @@
 <div id="content-mobile">
-  <h2 class="race-title">{{title}} - {{country}}</h2>
+  <h2 class="mobile-card-page-title">{{title}} - {{country}}</h2>
   <div class="card f1-card" *ngFor="let result of cleanedResults" (click)="openDriver(result)">
     <div class="card-body">
       <h4 class="card-title">{{result.positionOrder}}. {{result.surname}} ({{result.constructor}})</h4>

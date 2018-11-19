@@ -12,6 +12,14 @@ body {
   border-color: gray;
 }
 
+.mobile-card-page-title {
+  color: white;
+  margin: 20px;
+  text-align: center;
+}
+
+
+
 pre {
   color: white;
 }

@@ -23,8 +23,9 @@ export class SeasonResultsComponent implements OnInit {
   ngOnInit() {
     this.year = +this.route.snapshot.paramMap.get('year');
     if (!this.year) {
-      this.year = new Date().getFullYear();
+      this.router.navigate([`/season-results/${new Date().getFullYear()}`]);
     }
+
     this.resultsService.getRaceResults(this.year).subscribe(res => {
       this.uncleanedResults = res;
       this.positionResults = this.resultsService.myGroupBy(res, 'positionOrder');

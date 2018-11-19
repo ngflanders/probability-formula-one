@@ -1,4 +1,5 @@
 <div id="content-mobile">
+  <h2 class="mobile-card-page-title">{{year}}</h2>
   <div class="card f1-card" *ngFor="let race of raceResults">
     <div class="card-body">
       <h4 class="card-title race-title" (click)="openRaceResult(race[0].round)">{{race[0].country}}</h4>
