@@ -18,7 +18,6 @@ export class RaceResultComponent implements OnInit {
     private resultsService: FormulaoneInfoService,
     private route: ActivatedRoute,
     private router: Router
-
   ) {
   }
 

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormulaoneInfoService} from '../../Services/formulaone-info.service';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-champtionship-prediction',
@@ -17,6 +17,7 @@ export class ChampionshipPredictionComponent implements OnInit {
 
   constructor(
     private resultsService: FormulaoneInfoService,
+    private router: Router
   ) {
   }
 
@@ -30,6 +31,10 @@ export class ChampionshipPredictionComponent implements OnInit {
       this.predictedPlacesByDriver = this.resultsService.myGroupBy(res, 'driverRef');
       this.displayTableByDriver = this.buildTable(this.predictedPlacesByDriver);
     });
+  }
+
+  openDriver(prediction) {
+    this.router.navigate([`/driver/${prediction[0].driverRef}`]);
   }
 
   buildTable(places) {

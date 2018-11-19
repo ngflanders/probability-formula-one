@@ -21,23 +21,21 @@
 
 
 <div id="content-mobile">
-  <div style="padding: 1rem">
-    <div class="card f1-card" *ngFor="let d of predictedPlacesByDriver" style="margin-bottom: 1rem;">
-      <div class="card-body" style="padding: 0.75rem">
-        <h5 class="card-title" style="margin-bottom: .5rem">{{d[0].code}}</h5>
-        <ng-container *ngFor="let prob of d">
-          <ng-container *ngIf="prob.Probability !== 0">
-            <div>{{prob.place}}.</div>
-            <div class="progress" style="margin-bottom: 8px">
-              <div class="progress-bar" role="progressbar" [ngStyle]="{'width': (prob.Probability * 100) + '%'}"
-                   [ngClass]="{'progress-bar-striped': prob.Probability < 1,
+  <div class="card f1-card" *ngFor="let d of predictedPlacesByDriver" (click)="openDriver(d)">
+    <div class="card-body" style="padding: 0.75rem">
+      <h5 class="card-title" style="margin-bottom: .5rem">{{d[0].code}}</h5>
+      <ng-container *ngFor="let prob of d">
+        <ng-container *ngIf="prob.Probability !== 0">
+          <div>{{prob.place}}.</div>
+          <div class="progress" style="margin-bottom: 8px">
+            <div class="progress-bar" role="progressbar" [ngStyle]="{'width': (prob.Probability * 100) + '%'}"
+                 [ngClass]="{'progress-bar-striped': prob.Probability < 1,
                  'bg-danger': prob.Probability < .25, 'bg-warning' : prob.Probability >= .25 && prob.Probability < .50, 'bg-success': prob.Probability >= .50}">
-                {{prob.Probability * 100}}
-              </div>
+              {{prob.Probability * 100}}
             </div>
-          </ng-container>
+          </div>
         </ng-container>
-      </div>
+      </ng-container>
     </div>
   </div>
 </div>
