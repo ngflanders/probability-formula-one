@@ -29,7 +29,7 @@ export class SeasonResultsComponent implements OnInit {
     this.resultsService.getRaceResults(this.year).subscribe(res => {
       this.uncleanedResults = res;
       this.positionResults = this.resultsService.myGroupBy(res, 'positionOrder');
-      this.raceResults = this.resultsService.myGroupBy(res, 'country');
+      this.raceResults = this.resultsService.myGroupBy(res, 'country').reverse();
     });
   }
 
