@@ -35,8 +35,7 @@ function monteCarlo(preppedData, racesLeft) {
       preppedData[i].futureResults.push(points)
     }
 
-    var r = preppedData[i].futureResults.reduce((total, num) => total + num,0);
-    preppedData[i].futureTotal = preppedData[i].standings.points + r
+    preppedData[i].futureTotal = preppedData[i].standings.points + preppedData[i].futureResults.reduce((total, num) => total + num, 0);
   }
   preppedData = preppedData.sort((a,b) => b.futureTotal - a.futureTotal);
   return preppedData.map(r => r.driverRef);
