@@ -19,10 +19,11 @@ router.get('/:driverRef/:year', function (req, res, next) {
 
 function pastSeasonsStanding(apiRes, ref) {
   if (ref) {
-    let query = "select driverRef, number, code, forename, surname, dob, nationality, points, position,wins, c.year from drivers " +
-        " join driverstandings on drivers.driverId = driverstandings.driverId join races on races.raceId = driverstandings.raceId " +
-        " inner join (select a.year, raceId from races a inner join (select year, max(round) maxround from races group by year) b " +
-        " where a.year = b.year and a.round = b.maxround) c where driverRef = " + db.escape(ref) + " and races.raceId in (c.raceId) order by c.year;";
+    let query = "select constructorRef, constructors.name, constructors.nationality, results.number, driverRef, code, forename, surname, dob, d.nationality, d.position, d.points, d.wins, year\n" +
+        "from results inner join (select driverRef, number, code, forename, surname, dob, nationality, points, position, wins, c.year, c.raceId, drivers.driverId as drv from drivers\n" +
+        "join driverstandings on drivers.driverId = driverstandings.driverId join races on races.raceId = driverstandings.raceId inner join (select a.year, a.raceId from races a\n" +
+        "inner join (select year, max(round) maxround from races group by year) b where a.year = b.year and a.round = b.maxround) c where driverRef = " +db.escape(ref) + "and \n" +
+        "races.raceId in (c.raceId) order by c.year) d on d.raceId = results.raceId and drv = results.driverId join constructors on results.constructorId = constructors.constructorId order by year;";
     db.query(query, function (err, result) {
       if (err) {
         console.error(err);
@@ -47,8 +48,9 @@ function pastSeasonsStanding(apiRes, ref) {
 
 function thisSeasonResults(apiRes, ref, year) {
   if (ref && year) {
-    let query = "select driverRef, constructorId, grid, position, positionText, positionOrder, points, fastestLapRank, statusId, year, round, name, date " +
+    let query = "select driverRef, constructorRef, grid, position, positionText, positionOrder, points, fastestLapRank, statusId, year, round, races.name, date " +
         " from drivers join results on drivers.driverId = results.driverId " +
+        " join constructors on results.constructorId = constructors.constructorId " +
         "join races on races.raceId = results.raceId " +
         "where driverRef = " + db.escape(ref) + " and year = " + db.escape(year) + " order by year, round;";
     db.query(query, function (err, result) {

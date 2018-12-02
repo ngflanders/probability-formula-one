@@ -25,7 +25,7 @@ export class DriverOverviewComponent implements OnInit {
     this.driverRef = this.route.snapshot.paramMap.get('ref');
 
     this.resultsService.getDriverInfo(this.driverRef).subscribe(res => {
-      this.driverInfo = res[0];
+      this.driverInfo = res;
     });
 
     this.resultsService.getDriverResults(this.driverRef, 2018).subscribe(res => {
