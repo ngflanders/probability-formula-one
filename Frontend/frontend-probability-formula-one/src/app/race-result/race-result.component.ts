@@ -12,6 +12,7 @@ export class RaceResultComponent implements OnInit {
   cleanedResults: any;
   title: string;
   country: string;
+  circuit: string;
 
 
   constructor(
@@ -28,6 +29,7 @@ export class RaceResultComponent implements OnInit {
     this.resultsService.getRaceResults(year, round).subscribe(res => {
       this.title = res[0].race;
       this.country = res[0].country;
+      this.circuit = res[0].circuitRef;
       this.cleanedResults = res.map(r => {
         delete r.race;
         delete r.country;
