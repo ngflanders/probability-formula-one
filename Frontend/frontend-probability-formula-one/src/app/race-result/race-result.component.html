@@ -4,7 +4,7 @@
   </h2>
   <div class="card f1-card" *ngFor="let result of cleanedResults" (click)="openDriver(result)">
     <div class="card-body">
-      <h4 class="card-title">{{result.positionOrder | ordinal}}. {{result.surname}} ({{result.constructor}})</h4>
+      <h4 class="card-title">{{result.positionOrder | ordinal}} {{result.surname}} ({{result.constructor}})</h4>
       <h6 class="card-subtitle mb-2 text-muted">Grid: {{result.grid}}</h6>
       <h6 class="card-subtitle mb-2 text-muted" *ngIf="result.points">Points: {{result.points}}</h6>
     </div>
