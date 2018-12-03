@@ -48,10 +48,10 @@ function pastSeasonsStanding(apiRes, ref) {
 
 function thisSeasonResults(apiRes, ref, year) {
   if (ref && year) {
-    let query = "select driverRef, constructorRef, grid, position, positionText, positionOrder, points, fastestLapRank, statusId, year, round, races.name, date " +
+    let query = "select driverRef, constructorRef, grid, position, positionText, positionOrder, points, fastestLapRank, status.status, year, round, races.name, date " +
         " from drivers join results on drivers.driverId = results.driverId " +
-        " join constructors on results.constructorId = constructors.constructorId " +
-        "join races on races.raceId = results.raceId " +
+        " join constructors on results.constructorId = constructors.constructorId  join status on status.statusId = results.statusId " +
+        " join races on races.raceId = results.raceId " +
         "where driverRef = " + db.escape(ref) + " and year = " + db.escape(year) + " order by year, round;";
     db.query(query, function (err, result) {
       if (err) {

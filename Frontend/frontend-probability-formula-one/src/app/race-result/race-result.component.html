@@ -1,8 +1,10 @@
 <div id="content-mobile">
-  <h2 class="mobile-card-page-title">{{title}} - {{country}}  <img style="filter: invert(100%)" *ngIf="circuit" height="75px" src="assets/circuits/{{circuit}}.png"/></h2>
+  <h2 class="mobile-card-page-title">{{title}} - {{country}}
+    <img class="img" default="assets/f1.png" style="filter: invert(100%)" *ngIf="circuit" height="75px" src="assets/circuits/{{circuit}}.png"/>
+  </h2>
   <div class="card f1-card" *ngFor="let result of cleanedResults" (click)="openDriver(result)">
     <div class="card-body">
-      <h4 class="card-title">{{result.positionOrder}}. {{result.surname}} ({{result.constructor}})</h4>
+      <h4 class="card-title">{{result.positionOrder | ordinal}}. {{result.surname}} ({{result.constructor}})</h4>
       <h6 class="card-subtitle mb-2 text-muted">Grid: {{result.grid}}</h6>
       <h6 class="card-subtitle mb-2 text-muted" *ngIf="result.points">Points: {{result.points}}</h6>
     </div>

@@ -14,7 +14,6 @@ export class RaceResultComponent implements OnInit {
   country: string;
   circuit: string;
 
-
   constructor(
     private resultsService: FormulaoneInfoService,
     private route: ActivatedRoute,

@@ -18,8 +18,9 @@
 
       <ul class="list-group list-group-flush">
         <li class="list-group-item" *ngFor="let di of driverInfo">
-          <div><b>{{di.year}}</b> Place: {{di.position}} {{di.wins > 0 ? '-- Wins: ' + di.wins : ''}}</div>
-          <div>({{di.name}}) Car #{{di.number}} <img height="30px" src="assets/constructor_logos/{{di.constructorRef}}.png"/></div>
+          <div><b>{{di.year}}</b> Place: {{di.position | ordinal}} {{di.wins > 0 ? '-- Wins: ' + di.wins : ''}}</div>
+          <div>({{di.name}}) Car #{{di.number}}
+            <img class="img" default="assets/f1.png" height="30px" src="assets/constructor_logos/{{di.constructorRef}}.png"/></div>
         </li>
       </ul>
     </div>
@@ -30,9 +31,10 @@
 
   <div class="card f1-card" *ngFor="let race of thisSeasonResults" (click)="openRace(race)">
     <div class="card-body">
-      <h4 class="card-title">{{race.position || race.positionText}} - {{race.name}}</h4>
+      <h4 class="card-title">{{(race.position || race.positionText) | ordinal}} - {{race.name}}</h4>
       <h6 class="card-subtitle mb-2 text-muted">Grid: {{race.grid}}</h6>
       <h6 class="card-subtitle mb-2 text-muted" *ngIf="race.points">Points: {{race.points}}</h6>
+      <h6 class="card-subtitle mb-2 text-muted" *ngIf="race.status">Status: {{race.status}}</h6>
     </div>
   </div>
   <pre>{{driverInfo | json}}</pre>

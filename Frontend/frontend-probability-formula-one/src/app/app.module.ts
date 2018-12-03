@@ -12,6 +12,8 @@ import {ChampionshipPredictionComponent} from "./championship-prediction/champio
 import {HomeComponent} from "./home/home.component";
 import {RaceResultComponent} from "./race-result/race-result.component";
 import {DriverOverviewComponent} from "./driver-overview/driver-overview.component";
+import {ImagePreloadDirective} from "./custom-directives/ImagePreloadDirective";
+import {OrdinalPipe} from "./custom-directives/OrdinalPipe";
 
 @NgModule({
   imports: [
@@ -27,7 +29,9 @@ import {DriverOverviewComponent} from "./driver-overview/driver-overview.compone
     SeasonResultsComponent,
     RaceResultComponent,
     DriverOverviewComponent,
-    ChampionshipPredictionComponent
+    ChampionshipPredictionComponent,
+    ImagePreloadDirective,
+    OrdinalPipe
   ],
   providers: [FormulaoneInfoService],
   bootstrap: [AppComponent]

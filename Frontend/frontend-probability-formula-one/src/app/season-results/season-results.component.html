@@ -6,7 +6,8 @@
       <h6 style="display: inline; float: right">{{race[0].date | date}}</h6>
       <ul class="list-group list-group-flush">
         <li *ngFor="let result of race | slice:0:3" class="list-group-item race-result-driver" (click)="openDriver(result)">
-          {{result.positionOrder}}. {{result.surname}} ({{result.constructor}}) <img height="30px" src="assets/constructor_logos/{{result.constructorRef}}.png" />
+          {{result.positionOrder}}. {{result.surname}} ({{result.constructor}})
+          <img class="img" default="assets/f1.png" height="30px" src="assets/constructor_logos/{{result.constructorRef}}.png"/>
         </li>
       </ul>
     </div>
