@@ -12,6 +12,7 @@ export class DriverOverviewComponent implements OnInit {
   driverRef: string = "";
   driverInfo;
   thisSeasonResults;
+  WDCs:number = 0;
 
   constructor(
     private resultsService: FormulaoneInfoService,
@@ -26,6 +27,9 @@ export class DriverOverviewComponent implements OnInit {
 
     this.resultsService.getDriverInfo(this.driverRef).subscribe(res => {
       this.driverInfo = res;
+      this.WDCs = res.reduce(function (accumulator, curr) {
+        return curr.position === 1 ? accumulator + 1 : accumulator;
+      },0);
     });
 
     this.resultsService.getDriverResults(this.driverRef, 2018).subscribe(res => {
