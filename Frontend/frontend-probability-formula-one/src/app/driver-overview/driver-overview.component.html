@@ -20,10 +20,12 @@
 
       <ul class="list-group list-group-flush">
         <li class="list-group-item" *ngFor="let di of driverInfo">
-          <div><b>{{di.year}}</b> Place: {{di.position | ordinal}} {{di.wins > 0 ? '-- Wins: ' + di.wins : ''}}</div>
-          <div>({{di.name}}) Car #{{di.number}}
-            <img class="img" default="assets/f1.png" height="30px" src="assets/constructor_logos/{{di.constructorRef}}.png"/></div>
+            <div><b>{{di.year}}</b> Place: {{di.position | ordinal}} <i *ngIf="di.position === 1" class="fas fa-trophy" style="color: #ffd700;"></i> {{di.wins > 0 ? '-- Wins: ' + di.wins : ''}}</div>
+            <div>({{di.name}}) Car #{{di.number}}
+              <img class="img" default="assets/f1.png" height="30px" src="assets/constructor_logos/{{di.constructorRef}}.png"/>
+            </div>
         </li>
+
       </ul>
     </div>
   </div>

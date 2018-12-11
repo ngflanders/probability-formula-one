@@ -23,7 +23,7 @@ export class SeasonResultsComponent implements OnInit {
   ngOnInit() {
     this.year = +this.route.snapshot.paramMap.get('year');
     if (!this.year) {
-      this.router.navigate([`/season-results/${new Date().getFullYear()}`]);
+      this.router.navigate([`/season-results/${new Date().getFullYear()}`], {replaceUrl:true});
     }
 
     this.resultsService.getRaceResults(this.year).subscribe(res => {
