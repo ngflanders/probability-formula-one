@@ -7,27 +7,27 @@ app.set('port', PORT);
 
 var server = null;
 
-if (process.env.NODE_ENV === 'production') {
-  const fs = require('fs');
-  const https = require('https');
+//if (process.env.NODE_ENV === 'production') {
+//  const fs = require('fs');
+//  const https = require('https');
 
-  const privateKey = fs.readFileSync('/etc/letsencrypt/live/api.f1wiz.com/privkey.pem', 'utf8');
-  const certificate = fs.readFileSync('/etc/letsencrypt/live/api.f1wiz.com/cert.pem', 'utf8');
-  const ca = fs.readFileSync('/etc/letsencrypt/live/api.f1wiz.com/chain.pem', 'utf8');
+//  const privateKey = fs.readFileSync('/etc/letsencrypt/live/api.f1wiz.com/privkey.pem', 'utf8');
+//  const certificate = fs.readFileSync('/etc/letsencrypt/live/api.f1wiz.com/cert.pem', 'utf8');
+//  const ca = fs.readFileSync('/etc/letsencrypt/live/api.f1wiz.com/chain.pem', 'utf8');
 
-  const credentials = {
-    key: privateKey,
-    cert: certificate,
-    ca: ca
-  };
+//  const credentials = {
+//    key: privateKey,
+//    cert: certificate,
+//    ca: ca
+//  };
 
-  server = https.createServer(credentials, app);
+//  server = https.createServer(credentials, app);
 
-} else if (process.env.NODE_ENV === 'development') {
+//} else if (process.env.NODE_ENV === 'development') {
   var http = require('http');
 
   server = http.createServer(app);
-}
+//}
 
 
 server.listen(PORT);
